@@ -30,6 +30,12 @@ DaVisPP is a lightweight Matlab post-processer for laVision DaVis created .csv f
 
 The program reads all specified ``.csv`` files into the program and generates for each file a scatter plot using the Matlab ``scatter3`` function to illustrate the physical displacement. The points in the scatter plot can be coloured using any of the exported variables.
 
-### Data Format
+### Input Data Format
 
 The data format must be ``.csv`` for the script to read and ideally, the data is numbered sequentially to avoid having to sort the data within the Matlab script. DaVis does this as standard *i.e.* $B0001, B0002, B0003, B000n, ...$ which automatically loads the files in the correct order.
+
+### Settings within the Script
+
+The following explains the individual settings variables in the script. Note that the ones with an Asterix (``*``) are necessary, and the ones marked optional can be commented out.
+
+#### ``path``*
