@@ -2,6 +2,30 @@
 
 DaVisPP is a lightweight Matlab post-processer for laVision DaVis created .csv files.
 
+## Getting Started
+
+- **Option 1:** Used the download button in GitHub to get this repository.
+- **Option 2:** Use the Git on to fetch this repository. Note that there is a difference in how this works between Windows and MacOS.
+
+### Windows
+
+> [!WARNING]
+> Git is not installed by default on Windows. To check run ``git -v`` in command prompt. If it returns a version then it installed. If not, install GitHub [Git Download and install guide](https://github.com/git-guides/install-git).
+
+- Go to the directory in which the config files should reside.
+- Clone this git repository into an easily accessible location (ideally somewhere on the ``C`` drive on Windows).
+- Right-click and select ``Open Git Bash here``.
+- Use the ``git clone https://github.com/aq18507/DaVisPP.git`` command and hit enter. Now the directory is cloned.
+
+### Mac
+
+> [!NOTE]
+> Git is installed by default on MacOS. To check the version run ``git -v`` in the terminal.
+
+- Open the terminal program.
+- Use the change directory ``cd /Library/Application Support/`` command to move to the default location where the config files are stored on the Mac ``~/Library/Application Support/SuperSlicer``.
+- Use the ``git clone https://github.com/aq18507/DaVisPP.git`` command and hit enter. Now the directory is cloned.
+
 ## Working Principle
 
-The program reads all specified ``.csv`` files into the program and generates a for each file a scatter plot using the Matlab ``scatter3`` function. In addition to 
+The program reads all specified ``.csv`` files into the program and generates for each file a scatter plot using the Matlab ``scatter3`` function to illustrate the physical displacement. The points in the scatter plot can be coloured using any of the exported variables.
