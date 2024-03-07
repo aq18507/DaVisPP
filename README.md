@@ -39,3 +39,14 @@ The data format must be ``.csv`` for the script to read and ideally, the data is
 The following explains the individual settings variables in the script. Note that the ones with an Asterix (``*``) are necessary, and the ones marked optional can be commented out.
 
 #### ``path``*
+This defines the path to the data directly. Note that this can be an absolute or relative path.
+
+*Example*
+Absolute path
+```
+path = "D:\[Path]\[To]\[Directory]\";
+```
+or relative path
+```
+path = ".\Data\";
+```
