@@ -45,11 +45,11 @@ This defines the path to the data directly. Note that this can be an absolute or
 *Examples*
 
 Absolute path
-```
+```matlab
 path = "D:\[Path]\[To]\[Directory]\";
 ```
 or relative path
-```
+```matlab
 path = ".\Data\";
 ```
 
@@ -61,7 +61,7 @@ This is the type of analysis chosen. At the moment there is only one per-program
 
 *Example*
 
-```
+```matlab
 analysis_type = 1;
 ```
 
@@ -72,15 +72,15 @@ This array defines which files are evaluated and loaded. It can be all of them o
 *Examples*
 
 Loading all files. By using the string ``"all"`` the script will automatically load all data
-```
+```matlab
 file_range = "all";
 ```
 Loading a range of files from file $2$ to $16$
-```
+```matlab
 file_range = 2:16;
 ```
 Load specific files
-```
+```matlab
 file_range = [2 4 7 30];
 ```
 
@@ -122,7 +122,7 @@ StereoReconstructionError_pixel_
 ```
 
 *Example*
-```
+```matlab
 var = "Displacement_mm_";
 ```
 
