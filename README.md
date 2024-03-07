@@ -143,11 +143,47 @@ var_print = 1;
 
 This variable determines whether the figures should be saved in the ``Figure`` directory. Note that this automatically makes a directory if it does not already exist. This relies on the [``printFigure.m``](https://gatorcell.rmhaerospace.com/Scripts.html#printfigure) and [``setLaTeX.m``](https://gatorcell.rmhaerospace.com/Scripts.html#setlatex) functions which are documented in more detail on the *GATORcell* website. Click on the function for the documentation.
 
-``1`` = Saves figure into the figure directory using the same name as the original .csv file had.
+``1`` = Saves figure into the figure directory using the same name as the original ``.csv`` file had, (*i.e.* if the ``.csv`` file was **B0003.csv** then the figure will be called **B0003.svg**).
 
 ``0`` = Prevents figure from being saved. This might be useful when testing the function as saving the figure takes a significant amount of time.
 
 *Example*
 ```matlab
 save_fig = 0;
+```
+
+#### ``FontSize``*
+
+This variable defines the font size of the figure in *pt*. This is useful when exporting the figure for a report.
+
+*Example*
+```matlab
+FontSize = 12;
+```
+
+#### ``colorbar_range``(Optional)
+
+This value defines the colour bar range which is useful when comparing different figures with each other. This can be turned on by uncommenting. In other words, it keeps the colour bar constant across all plots. If this is commented out it will auto-adjust the colour bar for each plot. The first value represents the lowest and the second the maximum value respectively.
+
+*Example*
+```matlab
+colorbar_range = [0 30];
+```
+
+#### ``color_steps``(Optional)
+
+If this value is uncommented it will define the number of color steps.
+
+*Example*
+```matlab
+color_steps = 24;
+```
+
+#### ``color_scheme``(Optional)
+
+Check [Matlab Colormap](https://uk.mathworks.com/help/matlab/ref/colormap.html) for more details to add different colour schemes. All colour schemes listed in the link can be used. The ``parula`` is the default scheme. Note that the option must exactly match the colormap syntax. If this is commented out, the default is automatically chosen. If this is commented out, ``parula`` will be automatically selected.
+
+*Example*
+```matlab
+color_scheme = "jet";
 ```
