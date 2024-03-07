@@ -42,7 +42,7 @@ The following explains the individual settings variables in the script. Note tha
 
 This defines the path to the data directly. Note that this can be an absolute or relative path.
 
-*Example*
+*Examples*
 
 Absolute path
 ```
@@ -69,7 +69,7 @@ analysis_type = 1;
 
 This array defines which files are evaluated and loaded. It can be all of them or only a selected few. Note that it will always load the first file as this is the one all subsequent data relies on. For that reason, the first file does not necessarily need to be specified here.
 
-*Example*
+*Examples*
 
 Loading all files. By using the string ``"all"`` the script will automatically load all data
 ```
@@ -82,4 +82,58 @@ file_range = 2:16;
 Load specific files
 ```
 file_range = [2 4 7 30];
+```
+
+#### ``var``*
+
+This is the variable that is used in the analysis defined in colour in the scatter plot. Note that this must match one of the following variables:
+
+```
+x_mm_
+y_mm_
+z_mm_
+X_displacement_mm_
+Y_displacement_mm_
+Z_displacement_mm_
+Displacement_mm_
+Exx_S_
+Eyy_S_
+Exy_S_
+Poisson_sRatio_strainMin_max
+Poisson_sRatio_Exx_Eyy
+Poisson_sRatio_Eyy_Exx
+Poisson_sRatio_strainMax_min
+MaximumPrincipalStrain_S_
+MinimumPrincipalStrain_S_
+MaximumShearStrain_S_
+MaximumShearAngle___
+MaximumStrainAngle___
+TrescaStrain_S_
+VonMisesStrain_S_
+du_dx_S_
+du_dy_S_
+dv_dx_S_
+dv_dy_S_
+Vorticity_z_S_
+Height_mm_
+du_dx_dv_dy_S_
+Div_xy_S_
+StereoReconstructionError_pixel_
+```
+
+*Example*
+```
+var = "Displacement_mm_";
+```
+
+#### ``var_print``*
+
+Prints all available variables as well as some debug information.
+
+``1`` = This prints all variables into the command line window. This is useful when setting up an analysis.
+``0`` = Prevent variables to be printed into the command window.
+
+*Example*
+```
+var_print = 1;
 ```
