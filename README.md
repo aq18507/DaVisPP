@@ -1,6 +1,6 @@
 # DaVisPP
 
-DaVisPP is a lightweight Matlab post-processer for laVision DaVis created .csv files.
+DaVisPP is a lightweight Matlab post-processer for laVision DaVis created .csv files. The main script is called ``DaVisPP.m``, any helper scripts are stored in the directory ``./Scripts`` and do not need to be changed by the user.
 
 ## Getting Started
 
