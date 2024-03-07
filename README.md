@@ -138,3 +138,7 @@ Prints all available variables as well as some debug information.
 ```matlab
 var_print = 1;
 ```
+
+#### ``var_print``*
+
+This variable determines whether the figures should be saved in the ``Figure`` directory. Note that this automatically makes a directory if it does not already exist. This relies on the ``printFigure.m`` and ``setLaTeX.m`` functions which are documented in more detail here [``printFigure.m``](https://gatorcell.rmhaerospace.com/Scripts.html#printfigure) and here [``setLaTeX.m``](https://gatorcell.rmhaerospace.com/Scripts.html#setlatex).
