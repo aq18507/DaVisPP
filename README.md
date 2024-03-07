@@ -139,6 +139,15 @@ Prints all available variables as well as some debug information.
 var_print = 1;
 ```
 
-#### ``var_print``*
+#### ``save_fig``*
 
-This variable determines whether the figures should be saved in the ``Figure`` directory. Note that this automatically makes a directory if it does not already exist. This relies on the ``printFigure.m`` and ``setLaTeX.m`` functions which are documented in more detail here [``printFigure.m``](https://gatorcell.rmhaerospace.com/Scripts.html#printfigure) and here [``setLaTeX.m``](https://gatorcell.rmhaerospace.com/Scripts.html#setlatex).
+This variable determines whether the figures should be saved in the ``Figure`` directory. Note that this automatically makes a directory if it does not already exist. This relies on the [``printFigure.m``](https://gatorcell.rmhaerospace.com/Scripts.html#printfigure) and [``setLaTeX.m``](https://gatorcell.rmhaerospace.com/Scripts.html#setlatex) functions which are documented in more detail on the *GATORcell* website. Click on the function for the documentation.
+
+``1`` = Saves figure into the figure directory using the same name as the original .csv file had.
+
+``0`` = Prevents figure from being saved. This might be useful when testing the function as saving the figure takes a significant amount of time.
+
+*Example*
+```matlab
+save_fig = 0;
+```
