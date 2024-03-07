@@ -39,9 +39,11 @@ The data format must be ``.csv`` for the script to read and ideally, the data is
 The following explains the individual settings variables in the script. Note that the ones with an Asterix (``*``) are necessary, and the ones marked optional can be commented out.
 
 #### ``path``*
+
 This defines the path to the data directly. Note that this can be an absolute or relative path.
 
 *Example*
+
 Absolute path
 ```
 path = "D:\[Path]\[To]\[Directory]\";
@@ -49,4 +51,35 @@ path = "D:\[Path]\[To]\[Directory]\";
 or relative path
 ```
 path = ".\Data\";
+```
+
+Note that MacOS requires ``/`` separators whereas Windows works with ``/``.
+
+#### ``analysis_type``*
+
+This is the type of analysis chosen. At the moment there is only one per-programmed type. For this reason this needs to be set to ``1`` but the user can program further types which can the be chosen here to save computational resources. 
+
+*Example*
+
+```
+analysis_type = 1;
+```
+
+#### ``file_range``*
+
+This array defines which files are evaluated and loaded. It can be all of them or only a selected few. Note that it will always load the first file as this is the one all subsequent data relies on. For that reason, the first file does not necessarily need to be specified here.
+
+*Example*
+
+Loading all files. By using the string ``"all"`` the script will automatically load all data
+```
+file_range = "all";
+```
+Loading a range of files from file $2$ to $16$
+```
+file_range = 2:16;
+```
+Load specific files
+```
+file_range = [2 4 7 30];
 ```
