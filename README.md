@@ -23,7 +23,7 @@ DaVisPP is a lightweight Matlab post-processer for laVision DaVis created .csv f
 > Git is installed by default on MacOS. To check the version run ``git -v`` in the terminal.
 
 - Open the terminal program.
-- Use the change directory ``cd /Library/Application Support/`` command to move to the default location where the config files are stored on the Mac ``~/Library/Application Support/SuperSlicer``.
+- Use the change directory ``cd /[your directory]/`` command to move to the directory of your choice.
 - Use the ``git clone https://github.com/aq18507/DaVisPP.git`` command and hit enter. Now the directory is cloned.
 
 ## Working Principle
