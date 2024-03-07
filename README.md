@@ -131,9 +131,10 @@ var = "Displacement_mm_";
 Prints all available variables as well as some debug information.
 
 ``1`` = This prints all variables into the command line window. This is useful when setting up an analysis.
+
 ``0`` = Prevent variables to be printed into the command window.
 
 *Example*
-```
+```matlab
 var_print = 1;
 ```
