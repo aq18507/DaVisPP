@@ -24,7 +24,7 @@ path = "D:\Rafa_tharan\AF_Sam_sml_trial\NF_P4_20mm\";
 %% ANALYSIS TYPE
 % 1 =   Scatter Plot: Tracking individual points which are directly pulled
 %       from the .csv file.
-analysis_type = 1;
+analysis_type = 2;
 
 %% FILE RANGE
 % This array defines which files are evaluated and loaded. It can be all of
@@ -37,7 +37,7 @@ analysis_type = 1;
 % #2 -> 1:n     : This method loads a range of data. For instance 2:15 or
 %                 1:30 as long as the maximum value exists.
 % #3 -> [2 3 7] : Loads a defined number of files.                                  
-file_range = [2:10];
+file_range = [2:75];
 
 %% VARIABLE
 % This is the variable which is used to in the analysis. Note that this
@@ -232,6 +232,7 @@ for i = file_range
     elseif analysis_type == 2
         %% PRINT 2D PLOT
         fig = figure(zi);
+        hold on;
         setLaTeX(FontSize);
         scatter(x,y);
         axis equal;
