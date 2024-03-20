@@ -1,9 +1,0 @@
-function [data,file] = dataLoad(file)
-    file = nameLoad(file);
-    for i = 1:file.num
-        data.(name_export) = readtable(sprintf("%s%s",file.path,file_name),...
-            VariableNamingRule="modify");
-    end
-    file
-    data = 1
-end
