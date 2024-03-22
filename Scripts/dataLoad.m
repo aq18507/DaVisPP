@@ -8,10 +8,45 @@
 % v1.240318: - Initial version
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
 function [data,file] = dataLoad(file)
+    % Print start function message
+    fprintf("dataLoad -> Loading data from the .csv files in <%s> to the data struct:\n",file.path);
+    indentation = 11;
+
+    % Define the total number of iterations
+    total_iterations = file.num;
+    
+    % Display initial progress bar
+    fprintf('%s Progress:  0%% [%s]',repmat(' ',1,indentation),repmat('-', 1, 50));
+    tic;  % Start timing
+
     for i = 1:file.num
-        data.(file.name(i)) = readtable(sprintf("%s%s",file.path,file.file_name(i)),...
+        data.raw.(file.name(i)) = readtable(sprintf("%s%s",file.path,file.file_name(i)),...
             VariableNamingRule="modify");
+
+        % Update progress bar
+        progress = i / total_iterations;
+        num_symbols = floor(progress * 50);
+        remaining_symbols = 50 - num_symbols;
+        
+        % Clear previously printed progress bar
+        fprintf(repmat('\b', 1, 57));
+        
+        % Print updated progress bar
+        fprintf('%3d%% [%s%s]', ...
+            round(progress*100), ...
+            repmat('#', 1, num_symbols), repmat('-', 1, remaining_symbols));
     end
-    save(sprintf("%s%s",file.path,"DaVisPP_data.mat"),...
-        "data","file");
+    
+
+    % Display completion message
+    fprintf('\n');
+    
+    % Save data
+    name = "DaVisPP_data.mat";
+    save(sprintf("%s%s",file.path,"DaVisPP_data.mat"),"data","file");
+    fprintf('%s Saving data to %s%s\n',repmat(' ',1,indentation),file.path,name);
+    
+    % Calculate elapsed time
+    elapsed_time = toc;
+    fprintf('%s Elapsed time: %.2f seconds\n',repmat(' ',1,indentation),elapsed_time);
 end

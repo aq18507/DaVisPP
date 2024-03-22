@@ -7,13 +7,17 @@
 % CHANGELOG
 % v1.240318: - Initial version
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
-function [file] = nameLoad(file)
-    fprintf("nameLoad -> Loading meta data from <%s> directory: ",file.path);
-    file.name = strings(file.num,1);
-    file.file_name = strings(file.num,1);
-    for i = 1:file.num
-        file.file_name(i) = convertCharsToStrings(file.meta(i).name);
+function varPrint(file,analysis)
+    fprintf("* * * * * * * * * * * * *\n" + ...
+            "*  Variables  Available *\n" + ...
+            "* * * * * * * * * * * * *\n\n");
+    for j = 1:size(analysis.variables,2)
+        fprintf('%s\n',cell2mat(analysis.variables(j)));
     end
-    file.name = erase(file.file_name,".csv");
-    fprintf("DONE\n");
+    fprintf("\n" + ...
+            "* * * * * * * * * * *\n" + ...
+            "*  Directory Stats  *\n" + ...
+            "* * * * * * * * * * *\n\n");
+    fprintf("There are a total of %0.f .csv files in the <%s> directory\n", ...
+        size(file.name,1),file.path);
 end

@@ -3,6 +3,7 @@
 ./Figures
 
 # Files
+Test*
 DaVisPP_dev.m
 DaVisPP_dev2.m
 Test.m
