@@ -4,7 +4,7 @@ DaVisPP is a lightweight Matlab post-processer for laVision DaVis created .csv f
 
 The script loads all the data from a data directory into the ``data.raw`` structured array which will contain all raw data. Once loaded it will then track all points across all files since the different ``.csv`` files might not necessarily contain all the same points. For that reason, the ``data.index_matrix`` is created where each column represents a file (*i.e.* ``1`` = ``B0001.csv``, ``2`` = ``B0002.csv``, ``3`` = ``B0003.csv``, ``n`` = ``B000n.csv``). Therefore, column $1$ refers to the first file *e.g. ``B0001.csv`` which is the reference file where every other file is referenced to.
 
-![Alt text](/docs/reference.jpg?raw=true "Title")
+![Alt text](./docs/reference.jpg?raw=true "Title")
 
 ## Getting Started
 
