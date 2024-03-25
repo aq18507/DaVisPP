@@ -30,9 +30,7 @@ function [data] = pointTrack(file,data)
     for i = 2:file.num
         % Load Data from currentfile
         tab = data.raw.(file.name(i));
-        dat = [tab.x_mm_ - tab.X_displacement_mm_ ...
-               tab.y_mm_ - tab.Y_displacement_mm_ ...
-               tab.z_mm_ - tab.Z_displacement_mm_];
+        dat = [tab.x_mm_ tab.y_mm_ tab.z_mm_];
         clear tab;
         for j = 1:size(data.raw.(file.name(i)),1)
     
