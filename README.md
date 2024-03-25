@@ -85,8 +85,9 @@ This can be used to force the pointTrack function to be run. In general, this is
 
 ```matlab
 analysis.pointTrack_reload = 0;
+```
 
-#### ``analysis_type``*
+#### ``analysis.type``*
 
 This is the type of analysis chosen. At the moment there is only one per-programmed type. For this reason this needs to be set to ``1`` but the user can program further types which can the be chosen here to save computational resources. 
 
