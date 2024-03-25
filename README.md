@@ -65,6 +65,25 @@ file.path = ".\Data\";
 > [!NOTE]
 > Unix based operating systems *e.g.* MacOS requires ``/`` separators whereas Windows works with ``\``.
 
+#### ``analysis.data_reload``*
+
+This forces the script to reload the data into the data variable. If the raw data set has not changed, this should be set to ``0`` as the script will automatically detect whether the data is already loaded and if necessary it will load it automatically. In essence under normal operating mode this should be set to the default setting ``0``.
+
+*Example*
+
+```matlab
+analysis.data_reload = 0;
+```
+
+#### ``analysis.pointTrack_reload``*
+
+This can be used to force the pointTrack function to be run. In general, this is not needed as the script checks whether data is present. That said, it might be necessary to reload the data in some instances *e.g.* during programming and/or debugging. Set to ``1`` if this is the case.
+
+*Example*
+
+```matlab
+analysis.pointTrack_reload = 0;
+
 #### ``analysis_type``*
 
 This is the type of analysis chosen. At the moment there is only one per-programmed type. For this reason this needs to be set to ``1`` but the user can program further types which can the be chosen here to save computational resources. 
@@ -72,10 +91,10 @@ This is the type of analysis chosen. At the moment there is only one per-program
 *Example*
 
 ```matlab
-analysis_type = 1;
+analysis.type = 1;
 ```
 
-#### ``file_range``*
+#### ``analysis.range``*
 
 This array defines which files are evaluated and loaded. It can be all of them or only a selected few. Note that it will always load the first file as this is the one all subsequent data relies on. For that reason, the first file does not necessarily need to be specified here.
 
@@ -83,18 +102,27 @@ This array defines which files are evaluated and loaded. It can be all of them o
 
 Loading all files. By using the string ``"all"`` the script will automatically load all data
 ```matlab
-file_range = "all";
+analysis.range = "all";
 ```
 Loading a range of files from file $2$ to $16$
 ```matlab
-file_range = 2:16;
+analysis.range = 2:16;
 ```
 Load specific files
 ```matlab
-file_range = [2 4 7 30];
+analysis.range = [2 4 7 30];
+```
+#### ``analysis.mesh_size``*
+
+This is currently not used and can be ignored but must not be deleted.
+
+*Example*
+
+```matlab
+analysis.mesh_size = 100;
 ```
 
-#### ``var``*
+#### ``analysis.var``*
 
 This is the variable that is used in the analysis defined in colour in the scatter plot. Note that this must match one of the following variables:
 
@@ -132,11 +160,12 @@ StereoReconstructionError_pixel_
 ```
 
 *Example*
+
 ```matlab
-var = "Displacement_mm_";
+analysis.var = "Displacement_mm_";
 ```
 
-#### ``var_print``*
+#### ``analysis.var_print``*
 
 Prints all available variables as well as some debug information.
 
@@ -145,11 +174,12 @@ Prints all available variables as well as some debug information.
 ``0`` = Prevent variables to be printed into the command window.
 
 *Example*
+
 ```matlab
-var_print = 1;
+analysis.var_print = 1;
 ```
 
-#### ``save_fig``*
+#### ``fig.save``*
 
 This variable determines whether the figures should be saved in the ``Figure`` directory. Note that this automatically makes a directory if it does not already exist. This relies on the [``printFigure.m``](https://gatorcell.rmhaerospace.com/Scripts.html#printfigure) and [``setLaTeX.m``](https://gatorcell.rmhaerospace.com/Scripts.html#setlatex) functions which are documented in more detail on the *GATORcell* website. Click on the function for the documentation.
 
@@ -158,55 +188,52 @@ This variable determines whether the figures should be saved in the ``Figure`` d
 ``0`` = Prevents figure from being saved. This might be useful when testing the function as saving the figure takes a significant amount of time.
 
 *Example*
+
 ```matlab
-save_fig = 0;
+fig.save = 0;
 ```
 
-#### ``FontSize``*
+#### ``fig.font_size``*
 
 This variable defines the font size of the figure in *pt*. This is useful when exporting the figure for a report.
 
 *Example*
+
 ```matlab
-FontSize = 12;
+fig.font_size = 12;
 ```
 
-#### ``colorbar_range``(Optional)
+#### ``fig.colorbar_range``(Optional)
 
 This value defines the colour bar range which is useful when comparing different figures with each other. This can be turned on by uncommenting. In other words, it keeps the colour bar constant across all plots. If this is commented out it will auto-adjust the colour bar for each plot. The first value represents the lowest and the second the maximum value respectively.
 
 *Example*
+
 ```matlab
-colorbar_range = [0 30];
+fig.colorbar_range = [0 30];
 ```
 
-#### ``color_steps``(Optional)
+#### ``fig.color_steps``(Optional)
 
 If this value is uncommented it will define the number of color steps.
 
 *Example*
+
 ```matlab
-color_steps = 24;
+fig.color_steps = 24;
 ```
 
-#### ``color_scheme``(Optional)
+#### ``fig.color_scheme``(Optional)
 
 Check [Matlab Colormap](https://uk.mathworks.com/help/matlab/ref/colormap.html) for more details to add different colour schemes. All colour schemes listed in the link can be used. The ``parula`` is the default scheme. Note that the option must exactly match the colormap syntax. If this is commented out, the default is automatically chosen. If this is commented out, ``parula`` will be automatically selected.
 
 *Example*
+
 ```matlab
-color_scheme = "jet";
+fig.color_scheme = "jet";
 ```
 
-
-
-
-
-
-
-
-
-
+---
 
 ## Old depreciated versions
 
