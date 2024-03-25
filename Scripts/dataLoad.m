@@ -43,8 +43,9 @@ function [data,file] = dataLoad(file)
     
     % Save data
     name = "DaVisPP_data.mat";
+    fprintf('%s Saving data to <%s%s>:',repmat(' ',1,indentation),file.path,name);
     save(sprintf("%s%s",file.path,"DaVisPP_data.mat"),"data","file");
-    fprintf('%s Saving data to %s%s\n',repmat(' ',1,indentation),file.path,name);
+    fprintf(" DONE\n");
     
     % Calculate elapsed time
     elapsed_time = toc;

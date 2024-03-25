@@ -76,8 +76,9 @@ function [data] = pointTrack(file,data)
     % Save data
     data.index_matrix = index_matrix;
     name = "DaVisPP_data.mat";
+    fprintf('%s Saving data to <%s%s>:',repmat(' ',1,indentation),file.path,name);
     save(sprintf("%s%s",file.path,name),"data","file");
-    fprintf('%s Saving data to %s%s\n',repmat(' ',1,indentation),file.path,name);
+    fprintf(" DONE\n");
     
     % Calculate elapsed time
     elapsed_time = toc;
