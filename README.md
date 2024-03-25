@@ -39,6 +39,8 @@ Consider the figure above which shows a reference matrix, looking at row 5 colum
 > [!WARNING]
 > Tracking across files only reliably works if the data is correlated to the first image.
 
+All post-processed data is saved in a file called ``DaVisPP_data.mat`` and is saved in the original location where all the raw data is stored. Once this file is generated it can be loaded without having to read all files again and without having to index all tracking points.
+
 ### Input Data Format
 
 The data format must be ``.csv`` for the script to read and ideally, the data is numbered sequentially to avoid having to sort the data within the Matlab script. DaVis does this as standard *i.e.* $B0001, B0002, B0003, B000n, ...$ which automatically loads the files in the correct order.
