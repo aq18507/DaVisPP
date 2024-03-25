@@ -1,6 +1,6 @@
-# DaVisPP
+# DaVisPP2
 
-DaVisPP2 is a lightweight Matlab post-processer for laVision DaVis created .csv files. The main script is called ``DaVisPP2.m``, any helper scripts are stored in the directory ``./Scripts`` and do not need to be changed by the user. These scripts are required for the main script to run properly.
+DaVisPP2 is a lightweight Matlab post-processer for LaVision DaVis created .csv files created from a correlation which refers to the first image. The main script is called ``DaVisPP2.m``, any helper scripts are stored in the directory ``./Scripts`` and do not need to be changed by the user.
 
 ## Getting Started
 
