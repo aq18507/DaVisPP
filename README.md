@@ -34,7 +34,7 @@ The script loads all the data from a data directory into the ``data.raw`` struct
 
 ![Alt text](https://github.com/aq18507/DaVisPP/blob/main/docs/reference.JPG?raw=true "Title")
 
-Consider the figure above which shows a reference matrix, looking at row 5 column 1 and 2 for instance. This means that point ``5`` in the ``B0001.csv`` can be found row ``3`` in the files ``B0002.csv`` to ``B0007.csv``. Point the point in row 1 column 1 is no longer visible in the files ``B0002.csv`` to ``B0007.csv`` hence the ``NaN`` value. This matrix makes it relatively easy to track the points across all files as the data can be easily accessed using structure arrays. Please refer to the Matlab documentation for structure arrays which can be found here [``struct``](https://uk.mathworks.com/help/matlab/ref/struct.html).
+Consider the figure above which shows a reference matrix, looking at row 5 columns 1 and 2 for instance. The way this works is that point ``5`` in the ``B0001.csv`` can be found row ``3`` in the files ``B0002.csv`` to ``B0007.csv``. Another example is the point in row 1 column 1 is no longer visible in the files ``B0002.csv`` to ``B0007.csv`` hence the ``NaN`` value. This matrix makes it relatively easy to track the points across all files as the data can be easily accessed using structure arrays. Please refer to the Matlab documentation for structure arrays which can be found here [``struct``](https://uk.mathworks.com/help/matlab/ref/struct.html).
 
 > [!WARNING]
 > Tracking across files only reliably works if the data is correlated to the first image.
