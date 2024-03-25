@@ -1,12 +1,6 @@
 # DaVisPP
 
-DaVisPP is a lightweight Matlab post-processer for laVision DaVis created .csv files. The main script is called ``DaVisPP2.m``, any helper scripts are stored in the directory ``./Scripts`` and do not need to be changed by the user. These scripts are required for the main script to run properly.
-
-The script loads all the data from a data directory into the ``data.raw`` structured array which will contain all raw data. Once loaded it will then track all points across all files since the different ``.csv`` files might not necessarily contain all the same points. For that reason, the ``data.index_matrix`` is created where each column represents a file (*i.e.* ``1`` = ``B0001.csv``, ``2`` = ``B0002.csv``, ``3`` = ``B0003.csv``, ``n`` = ``B000n.csv``). Therefore, column $1$ refers to the first file *e.g.* ``B0001.csv`` which is the reference file where every other file is referenced to. 
-
-![Alt text](https://github.com/aq18507/DaVisPP/blob/main/docs/reference.JPG?raw=true "Title")
-
-Consider the figure above which shows a reference matrix, looking at row 5 column 1 and 2 for instance. This means that point ``5`` in the ``B0001.csv`` can be found row ``3`` in the files ``B0002.csv`` to ``B0007.csv``. Point the point in row 1 column 1 is no longer visible in the files ``B0002.csv`` to ``B0007.csv`` hence the ``NaN`` value. This matrix makes it relatively easy to track the points across all files as the data can be easily accessed using structure arrays. Please refer to the Matlab documentation for structure arrays which can be found here [``struct``](https://uk.mathworks.com/help/matlab/ref/struct.html).
+DaVisPP2 is a lightweight Matlab post-processer for laVision DaVis created .csv files. The main script is called ``DaVisPP2.m``, any helper scripts are stored in the directory ``./Scripts`` and do not need to be changed by the user. These scripts are required for the main script to run properly.
 
 ## Getting Started
 
@@ -36,6 +30,15 @@ Consider the figure above which shows a reference matrix, looking at row 5 colum
 
 The program reads all specified ``.csv`` files into the program and generates for each file a scatter plot using the Matlab ``scatter3`` function to illustrate the physical displacement. The points in the scatter plot can be coloured using any of the exported variables.
 
+The script loads all the data from a data directory into the ``data.raw`` structured array which will contain all raw data. Once loaded it will then track all points across all files since the different ``.csv`` files might not necessarily contain all the same points. For that reason, the ``data.index_matrix`` is created where each column represents a file (*i.e.* ``1`` = ``B0001.csv``, ``2`` = ``B0002.csv``, ``3`` = ``B0003.csv``, ``n`` = ``B000n.csv``). Therefore, column $1$ refers to the first file *e.g.* ``B0001.csv`` which is the reference file where every other file is referenced to. 
+
+![Alt text](https://github.com/aq18507/DaVisPP/blob/main/docs/reference.JPG?raw=true "Title")
+
+Consider the figure above which shows a reference matrix, looking at row 5 column 1 and 2 for instance. This means that point ``5`` in the ``B0001.csv`` can be found row ``3`` in the files ``B0002.csv`` to ``B0007.csv``. Point the point in row 1 column 1 is no longer visible in the files ``B0002.csv`` to ``B0007.csv`` hence the ``NaN`` value. This matrix makes it relatively easy to track the points across all files as the data can be easily accessed using structure arrays. Please refer to the Matlab documentation for structure arrays which can be found here [``struct``](https://uk.mathworks.com/help/matlab/ref/struct.html).
+
+> [!WARNING]
+> Tracking across files only reliably works if the data is correlated to the first image.
+
 ### Input Data Format
 
 The data format must be ``.csv`` for the script to read and ideally, the data is numbered sequentially to avoid having to sort the data within the Matlab script. DaVis does this as standard *i.e.* $B0001, B0002, B0003, B000n, ...$ which automatically loads the files in the correct order.
@@ -44,7 +47,7 @@ The data format must be ``.csv`` for the script to read and ideally, the data is
 
 The following explains the individual settings variables in the script. Note that the ones with an Asterix (``*``) are necessary, and the ones marked optional can be commented out.
 
-#### ``path``*
+#### ``file.path``*
 
 This defines the path to the data directly. Note that this can be an absolute or relative path.
 
@@ -52,14 +55,15 @@ This defines the path to the data directly. Note that this can be an absolute or
 
 Absolute path
 ```matlab
-path = "D:\[Path]\[To]\[Directory]\";
+file.path = "D:\[Path]\[To]\[Directory]\";
 ```
 or relative path
 ```matlab
-path = ".\Data\";
+file.path = ".\Data\";
 ```
 
-Note that MacOS requires ``/`` separators whereas Windows works with ``/``.
+> [!NOTE]
+> Unix based operating systems *e.g.* MacOS requires ``/`` separators whereas Windows works with ``\``.
 
 #### ``analysis_type``*
 
