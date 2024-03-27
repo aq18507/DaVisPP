@@ -60,10 +60,6 @@ analysis.type = 2;
 % #3 -> [2 3 7] : Loads a defined number of files.                                  
 analysis.range = [2:30];
 
-%% MESH SIZE
-% NOTE: This is not currently used
-analysis.mesh_size = 100;
-
 %% VARIABLE
 % This is the variable which is used to in the analysis. Note that this
 % must match the output from the <analysis.var_print>. 
@@ -109,9 +105,6 @@ fig.color_steps = 24;
 fig.color_scheme = "jet";
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
-%% DEFINE FUNCTIONS
-R = @(a) [cosd(a) -sind(a); sind(a) cosd(a)];
-
 %% INDEX DATA DIRECTORY
 file.meta = dir(sprintf("%s*.csv",file.path));
 file.num = size(file.meta,1);
@@ -192,26 +185,22 @@ if analysis.var_print == 1
 end
 
 %% MAIN SCRIPT
-
-Z_displacement_max = nan(1,file.num);
-Y_displacement_max = nan(1,file.num);
-Eyy_S_max = nan(1,file.num);
-
 zi = 1;
 for i = analysis.range
     name = file.name(i);
     fig.name = sprintf("%s_%s",file.name(i),analysis.var);
     if zi == 1
         analysis.variables = data.raw.(name).Properties.VariableNames;
-        fig.legend_variables.c = fig.legend_variables.raw(find((analysis.var == analysis.variables) == 1));
+        fig.legend_variables.c = fig.legend_variables.raw( ...
+            find((analysis.var == analysis.variables) == 1));
         fig.legend_variables.x = fig.legend_variables.raw(1);
         fig.legend_variables.y = fig.legend_variables.raw(2);
         fig.legend_variables.z = fig.legend_variables.raw(3);
     end
 
     %% Data Porcessing
-
-    x = data.raw.(name).x_mm_;     y = data.raw.(name).y_mm_;     z = data.raw.(name).z_mm_;     c = data.raw.(name).(analysis.var);
+    x = data.raw.(name).x_mm_;     y = data.raw.(name).y_mm_;     
+    z = data.raw.(name).z_mm_;     c = data.raw.(name).(analysis.var);
 
     z_min_0 = min(z);     z = z - z_min_0;
     x_min_0 = min(x);     x = x - x_min_0;
@@ -226,17 +215,6 @@ for i = analysis.range
         y = y + dy;
         z = z + dz;
     end
-
-    x_min = min(x);    x_max = max(x);
-    y_min = min(y);    y_max = max(y);
-
-    xlin = linspace(x_min,x_max,analysis.mesh_size);
-    ylin = linspace(y_min,y_max,analysis.mesh_size);
-
-    [X,Y] = meshgrid(xlin,ylin);
-
-    fz = scatteredInterpolant(x,y,z);
-    Z = fz(X,Y);
 
     %% PRINT SCATTER FIGURE
     % Create Table contating the data for scatter figure

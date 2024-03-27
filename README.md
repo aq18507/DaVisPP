@@ -115,15 +115,6 @@ Load specific files
 ```matlab
 analysis.range = [2 4 7 30];
 ```
-#### ``analysis.mesh_size``*
-
-This is currently not used and can be ignored but must not be deleted.
-
-*Example*
-
-```matlab
-analysis.mesh_size = 100;
-```
 
 #### ``analysis.var``*
 
