@@ -8,6 +8,8 @@
 % v1.240318: - Initial version
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
 function [data] = pointTrack(file,data)
+    % Start timing
+    tic;  
 
     % Print start function message
     fprintf("pointTrack -> Tracking pints across all files:\n")
@@ -17,7 +19,6 @@ function [data] = pointTrack(file,data)
     
     % Display initial progress bar
     progressBar(0,file.num,settings);
-    tic;  % Start timing
     
     % Load reference data from the 1st (Reference) file
     tab = data.raw.(file.name(1));

@@ -16,9 +16,11 @@ function progressBar(iteration,total_iterations,settings)
     else
         indentation = settings.indentation;
     end
+
     % Main function
     if iteration == 0
-        fprintf('%s Progress:   0%% [%s]',repmat(' ',1,indentation),repmat('-', 1, 50));
+        fprintf('%s Progress:   0%% [%s]', ...
+            repmat(' ',1,indentation),repmat('-', 1, 50));
     else
         % Update progress bar
         progress = iteration/total_iterations;

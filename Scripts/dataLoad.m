@@ -8,6 +8,8 @@
 % v1.240318: - Initial version
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
 function [data,file] = dataLoad(file)
+    % Start timing
+    tic;  
     % Print start function message
     fprintf("dataLoad -> Loading data from the .csv files in <%s> to the data struct:\n",file.path);
 
@@ -16,7 +18,6 @@ function [data,file] = dataLoad(file)
     
     % Display initial progress bar    
     progressBar(0,file.num,settings);
-    tic;  % Start timing
 
     for i = 1:file.num
         data.raw.(file.name(i)) = readtable(sprintf("%s%s",file.path,file.file_name(i)),...
