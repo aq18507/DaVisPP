@@ -202,18 +202,10 @@ for i = analysis.range
     x = data.raw.(name).x_mm_;     y = data.raw.(name).y_mm_;     
     z = data.raw.(name).z_mm_;     c = data.raw.(name).(analysis.var);
 
-    z_min_0 = min(z);     z = z - z_min_0;
-    x_min_0 = min(x);     x = x - x_min_0;
-    y_min_0 = min(y);     y = y - y_min_0;
-
-    dx = data.raw.(name).X_displacement_mm_;
-    dy = data.raw.(name).Y_displacement_mm_;
-    dz = data.raw.(name).Z_displacement_mm_;
-    
     if i > 1
-        x = x + dx;
-        y = y + dy;
-        z = z + dz;
+        x = x - min(x) + data.raw.(name).X_displacement_mm_;
+        y = y - min(y) + data.raw.(name).Y_displacement_mm_;
+        z = z - min(z) + data.raw.(name).Z_displacement_mm_;
     end
 
     %% PRINT SCATTER FIGURE
