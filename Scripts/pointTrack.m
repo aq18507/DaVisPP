@@ -59,9 +59,6 @@ function [data] = pointTrack(file,data)
         progressBar(i,file.num,settings);
     end
     
-    % Display completion message
-    fprintf('\n');
-    
     % Save data
     data.index_matrix = index_matrix;
     name = "DaVisPP_data.mat";

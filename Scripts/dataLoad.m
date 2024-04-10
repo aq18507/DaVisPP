@@ -26,9 +26,6 @@ function [data,file] = dataLoad(file)
         % Update progress bar
         progressBar(i,file.num,settings);
     end    
-
-    % Display completion message
-    fprintf('\n');
     
     % Save data
     name = "DaVisPP_data.mat";

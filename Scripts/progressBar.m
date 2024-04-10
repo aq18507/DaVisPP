@@ -45,4 +45,9 @@ function progressBar(iteration,total_iterations,settings)
             round(progress*100), ...
             repmat('#', 1, num_symbols), repmat('-', 1, remaining_symbols));
     end
+
+    % Move to new line after the final iteration
+    if iteration == total_iterations
+        fprintf('\n');
+    end
 end
