@@ -45,7 +45,7 @@ analysis.pointTrack_reload = 0;
 % 0 =   No analysis
 % 1 =   Scatter Plot: Tracking individual points which are directly pulled
 %       from the .csv file.
-analysis.type = 2;
+analysis.type = 1;
 
 %% FILE RANGE
 % This array defines which files are evaluated and loaded. It can be all of
