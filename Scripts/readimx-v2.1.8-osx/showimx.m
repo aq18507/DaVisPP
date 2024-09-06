@@ -17,22 +17,24 @@ if ~(isfield(Frame,'Components') & isfield(Frame,'Attributes') & isfield(Frame,'
 end
 
 Components = Frame.Components;
-if Frame.IsVector,
+if ~Frame.IsVector,
+    for i = 1:size(Components,1),
+        Planes = Components{i}.Planes;
+        nz = size(Planes,1);
+        if nz==0,
+            disp('no Planes')
+        elseif nz==1,
+            D = showPlane( Planes{1}, Frame.Scales );
+        else
+            D = showVolume( Planes, Frame.Scales );
+        end
+    end
+else
     frameInfo = MakeFrameInfo(Frame);
-    if ( frameInfo.is3D ), 
+    if ( frameInfo.is3D ), %3D
 		D = show3DVec(Frame);
     else
         D = show2DVec(Frame);
     end
         
-else
-    Planes = Components{1}.Planes; % assume image in component 1, ignore mask in component 2
-    nz = size(Planes,1);
-    if nz==0,
-        disp('no Planes')
-    elseif nz==1,
-        D = showPlane( Planes{1}, Frame.Scales );
-    else
-        D = showVolume( Planes, Frame.Scales );
-    end
 end
