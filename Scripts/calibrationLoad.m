@@ -7,7 +7,7 @@
 % CHANGELOG
 % v1.240909: - Initial version
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
-function calibration = calibrationLoad(file)
+function [calibration,file] = calibrationLoad(file)
     % Start timing
     tic;
     % Indentation Setting
@@ -66,7 +66,7 @@ function calibration = calibrationLoad(file)
         
         % Save data
         fprintf('%s Saving data to <%s>:',repmat(' ',1,settings.indentation),file_name);
-        save(file_name,"calibration","file");
+        save(file_name,"calibration");
         fprintf(" DONE\n");
     else
         % Print start function message

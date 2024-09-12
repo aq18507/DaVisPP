@@ -7,14 +7,14 @@
 % CHANGELOG
 % v1.240910: - Initial version
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
-function fig = dataSelectGUI(A,u,v)
+function fig = dataSelectGUI(A,camera,u,v)
     close all;
     clear selectedY selectedX selectedIdx selectedPoints;
     
     fig = figure('Name', 'Data Selection GUI', 'NumberTitle', 'off');
     
     ax1 = axes;
-    showimx2(A.Frames{1}, ax1);
+    showimx2(A.Frames{camera}, ax1);
     axis(ax1, "equal");
     colormap(ax1, 'gray');
     
