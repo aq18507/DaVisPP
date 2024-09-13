@@ -7,9 +7,9 @@
 % CHANGELOG
 % v1.240910: - Initial version
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
-function fig = dataSelectGUI(A,camera,u,v)
+function [fig] = dataSelectGUI(A,camera,u,v)
     close all;
-    clear selectedY selectedX selectedIdx selectedPoints;
+    clear selectedPoints;
     
     fig = figure('Name', 'Data Selection GUI', 'NumberTitle', 'off');
     
@@ -38,7 +38,7 @@ function fig = dataSelectGUI(A,camera,u,v)
     brush on;  % Turn on the brush tool
 
     % Function to handle point selection and save to the workspace
-    function finish_selection_callback(~, ~)
+    function finish_selection_callback(~,~)
         % Get the brush selection
         selectedPoints = get(hScatter, 'BrushData');
 
@@ -46,17 +46,12 @@ function fig = dataSelectGUI(A,camera,u,v)
         if any(selectedPoints)
             % Find the indices of selected points
             selectedIdx = find(selectedPoints);
-            % Extract x and y values of selected points
-            selectedX = u(selectedIdx);
-            selectedY = v(selectedIdx);
 
             % Highlight selected points in green
-            scatter(selectedX, selectedY, 80, 'g', 'filled');  % Highlight selected points
+            scatter(u(selectedIdx), v(selectedIdx), 80, 'g', 'filled');  % Highlight selected points
 
-            % Save the selected points to the workspace as and index array
+            % % Save the selected points to the workspace as and index array
             assignin('base', 'selectedIdx', selectedIdx);
-
-            disp('Selected points have been saved as "selectedIdx" in the workspace.');
         else
             disp('No points were selected!');
         end
