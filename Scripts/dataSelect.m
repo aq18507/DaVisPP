@@ -7,7 +7,7 @@
 % CHANGELOG
 % v1.240912: - Initial version
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
-function selectedIdx = dataSelect(rawData,calibration,file,data,settings)
+function [data,selectedIdx] = dataSelect(rawData,calibration,file,data,settings)
 
     % Start timing
     tic;  
@@ -22,9 +22,9 @@ function selectedIdx = dataSelect(rawData,calibration,file,data,settings)
     camera = file.camera;
     
     % Sample 3D points in the world coordinate system (original data)
-    X_world = rawData.x';  % Transpose to ensure it's a column vector
-    Y_world = rawData.y';  % Transpose to ensure it's a column vector
-    Z_world = rawData.z';  % Transpose to ensure it's a column vector
+    X_world = rawData.x(:,1)';  % Transpose to ensure it's a column vector
+    Y_world = rawData.y(:,1)';  % Transpose to ensure it's a column vector
+    Z_world = rawData.z(:,1)';  % Transpose to ensure it's a column vector
     
     % Extract relevant data group data from the calibration file
     PinholeParameters = ...
@@ -140,7 +140,8 @@ function selectedIdx = dataSelect(rawData,calibration,file,data,settings)
     dataSave(file,settings,selectedIdx);
 
     % Remove unused data
-    data.dataSelectOutput = rmfield(data,'dataSelectOutput');
+    field = 'dataSelectOutput';
+    data.dataSelectOutput = rmfield(data,field);
     evalin('base', ['clear ', 'selectedIdx']);
 
     % Calculate elapsed time
