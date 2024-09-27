@@ -8,7 +8,7 @@ z = [0, 2, 3, 2, 1];
 pp = defineSpline3D(t, x, y, z);
 
 % Define the point on the spline where we want to find the perpendicular
-t_point = 1; % For example, at t = 3
+t_point = 2; % For example, at t = 3
 
 % Calculate the perpendicular vector at the given point
 perp_vector = perpendicularToSpline(pp, t_point);
