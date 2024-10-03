@@ -1,4 +1,4 @@
-function [surface_points] = perpendicularSurfaceToSpline(pp, t_point, radius, num_points)
+function [surface_points,surface_points_s1,surface_points_s2] = perpendicularSurfaceToSpline(pp, t_point, radius, num_points)
     % perpendicularSurfaceToSpline - Creates a surface perpendicular to the spline at a given point
     % 
     % Syntax: surface_points = perpendicularSurfaceToSpline(pp, t_point, radius, num_points)
@@ -11,6 +11,9 @@ function [surface_points] = perpendicularSurfaceToSpline(pp, t_point, radius, nu
     % 
     % Outputs:
     %   surface_points - Nx3 matrix representing points on the perpendicular surface
+
+    % Constants:
+    plane_offset = 1;
     
     % Step 1: Calculate the tangent vector at t_point
     pp_dx = fnder(pp.x);
@@ -40,16 +43,12 @@ function [surface_points] = perpendicularSurfaceToSpline(pp, t_point, radius, nu
     % Second perpendicular vector
     perp_vector2 = cross(tangent_vector, perp_vector1);
     perp_vector2 = perp_vector2 / norm(perp_vector2);  % Normalize
-
-    perp_vector3 = cross(perp_vector1, perp_vector2);
-    perp_vector3 = perp_vector3 / norm(perp_vector3);  % Normalize
-
-    perp_vector4 = cross(perp_vector2, perp_vector1);
-    perp_vector4 = perp_vector4 / norm(perp_vector4);  % Normalize
     
-    % Step 3: Generate the circular surface points
+    % Step 3: Generate the circular surface points plane #1
     theta = linspace(0, 2*pi, num_points);  % Angles for generating points on the surface
     surface_points = zeros(num_points, 3);  % Preallocate matrix for surface points
+    surface_points_s1 = zeros(num_points, 3);  % Preallocate matrix for surface points
+    surface_points_s2 = zeros(num_points, 3);  % Preallocate matrix for surface points
     
     % Evaluate the point on the spline at t_point
     x_point = ppval(pp.x, t_point);
@@ -57,9 +56,19 @@ function [surface_points] = perpendicularSurfaceToSpline(pp, t_point, radius, nu
     z_point = ppval(pp.z, t_point);
     point_on_spline = [x_point, y_point, z_point];
     
+    % Origin #2
+    perp_vector3 = cross(perp_vector1, perp_vector2);
+    origin2 = (perp_vector3 / norm(perp_vector3) * plane_offset) + point_on_spline;
+    
+    % Origin #3
+    perp_vector4 = cross(perp_vector2, perp_vector1);
+    origin3 = (perp_vector4 / norm(perp_vector4) * plane_offset) + point_on_spline;
+    
     % Generate the circular surface by combining the two perpendicular vectors
     for i = 1:num_points
         surface_points(i, :) = point_on_spline + radius * (cos(theta(i)) * perp_vector1 + sin(theta(i)) * perp_vector2);
+        surface_points_s1(i, :) = origin2 + radius * (cos(theta(i)) * perp_vector1 + sin(theta(i)) * perp_vector2);
+        surface_points_s2(i, :) = origin3 + radius * (cos(theta(i)) * perp_vector1 + sin(theta(i)) * perp_vector2);
     end
     
     % Step 4: Plot the results
@@ -77,8 +86,10 @@ function [surface_points] = perpendicularSurfaceToSpline(pp, t_point, radius, nu
     % Plot the point on the spline
     plot3(point_on_spline(1), point_on_spline(2), point_on_spline(3), 'ro', 'MarkerSize', 10, 'DisplayName', 'Point on Spline');
 
-    % Plot the surface points
-    fill3(surface_points(:, 1), surface_points(:, 2), surface_points(:, 3), 'b', 'FaceAlpha', 0.3, 'DisplayName', 'Perpendicular Surface');
+    % Plot the surface points at the origin
+    fill3(surface_points(:, 1), surface_points(:, 2), surface_points(:, 3), 'r', 'FaceAlpha', 0.3, 'DisplayName', 'Perpendicular Surface');
+    % fill3(surface_points_s1(:, 1), surface_points_s1(:, 2), surface_points_s1(:, 3), 'b', 'FaceAlpha', 0.3, 'DisplayName', 'Perpendicular Surface');
+    % fill3(surface_points_s2(:, 1), surface_points_s2(:, 2), surface_points_s2(:, 3), 'b', 'FaceAlpha', 0.3, 'DisplayName', 'Perpendicular Surface');
 
 
     % Plot Vectors 1 and 2
@@ -86,10 +97,10 @@ function [surface_points] = perpendicularSurfaceToSpline(pp, t_point, radius, nu
         perp_vector1(1), perp_vector1(2), perp_vector1(3), 1, 'LineWidth', 2, 'MaxHeadSize', 2, 'DisplayName', 'Perpendicular Vector #1');
     quiver3(point_on_spline(1), point_on_spline(2), point_on_spline(3), ...
         perp_vector2(1), perp_vector2(2), perp_vector2(3), 1, 'LineWidth', 2, 'MaxHeadSize', 2, 'DisplayName', 'Perpendicular Vector #2');
-    quiver3(point_on_spline(1), point_on_spline(2), point_on_spline(3), ...
-        perp_vector3(1), perp_vector3(2), perp_vector3(3), 1, 'LineWidth', 2, 'MaxHeadSize', 2, 'DisplayName', 'Perpendicular Vector #3');
-    quiver3(point_on_spline(1), point_on_spline(2), point_on_spline(3), ...
-        perp_vector4(1), perp_vector4(2), perp_vector4(3), 1, 'LineWidth', 2, 'MaxHeadSize', 2, 'DisplayName', 'Perpendicular Vector #4');
+    % quiver3(point_on_spline(1), point_on_spline(2), point_on_spline(3), ...
+    %     perp_vector3(1), perp_vector3(2), perp_vector3(3), 1, 'LineWidth', 2, 'MaxHeadSize', 2, 'DisplayName', 'Perpendicular Vector #3');
+    % quiver3(point_on_spline(1), point_on_spline(2), point_on_spline(3), ...
+    %     perp_vector4(1), perp_vector4(2), perp_vector4(3), 1, 'LineWidth', 2, 'MaxHeadSize', 2, 'DisplayName', 'Perpendicular Vector #4');
 
     legend;
     title('Perpendicular Surface to 3D Spline');
