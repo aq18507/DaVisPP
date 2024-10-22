@@ -50,7 +50,7 @@ function [data,selectedIdx] = dataSelect(rawData,calibration,file,data,settings)
     else
         error("The variable Camera must be defined and must either be 1 or 2");
     end
-    
+
     % Focal length in millimeters (replace with your actual focal length)
     f_mm = FocalLength.x*cf_i;  % Focal length in mm
     
