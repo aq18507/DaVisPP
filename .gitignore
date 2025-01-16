@@ -4,8 +4,8 @@
 
 # Files
 Test*
-DaVisPP_dev.m
-DaVisPP_dev2.m
+# DaVisPP_dev.m
+# DaVisPP_dev2.m
 Test.m
 hole_test.m
 
